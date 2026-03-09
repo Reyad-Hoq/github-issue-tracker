@@ -7,10 +7,21 @@ const passwordInput = document.getElementById("input-password")
 const logInAuthentication = () => {
   const nameValue = nameInput.value;
   const passwordValue = passwordInput.value;
-  console.log(nameValue)
-  console.log(passwordValue)
+  if (!nameValue || !passwordValue) {
+    alert('Please, Enter Your Username & Password')
+    return;
+  }
+  if (nameValue === "admin" && passwordValue === "admin123") {
+    window.location.assign("home.html")
+  } else {
+    alert('Invalid Username or Password')
+  }
 }
 logIn.addEventListener('click', () => {
-  console.log('hello world')
   logInAuthentication()
+})
+inputEl.addEventListener("keypress", event => {
+  if (event.key === 'Enter') {
+    logInAuthentication()
+  }
 })
