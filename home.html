@@ -43,9 +43,10 @@
     </div>
   </header>
   <section class="bg-white w-10/12 mx-auto p-6 rounded-lg shadow-sm">
-    <button id="all-btn" class="btn btn-primary ,md:w-1/11">All</button>
-    <button id="open-btn" class="btn btn-outline btn-primary md:w-1/11">Open</button>
-    <button id="closed-btn" class="btn btn-outline btn-primary md:w-1/11">Closed</button>
+    <button onclick="toggleStyle('all-btn')" id="all-btn" class="btn btn-primary md:w-1/11">All</button>
+    <button onclick="toggleStyle('open-btn')" id="open-btn" class="btn btn-outline btn-primary md:w-1/11">Open</button>
+    <button onclick="toggleStyle('closed-btn')" id="closed-btn"
+      class="btn btn-outline btn-primary md:w-1/11">Closed</button>
   </section>
 
   <section class="w-10/12 mx-auto space-y-7">
@@ -68,28 +69,19 @@
         <div>Closed</div>
       </div>
     </header>
+    <section id="open-tab" class="hidden">
+      <div id="open-container" class="grid md:grid-cols-4 gap-4">
 
-    <main>
+      </div>
+    </section>
+    <section id="closed-tab" class="hidden">
+      <div id="close-container" class="grid md:grid-cols-4 gap-4">
+
+      </div>
+    </section>
+    <main id="all-cards" class="">
       <div id="issue-container" class="grid md:grid-cols-4 gap-4">
-        <div class="bg-white rounded-lg shadow-sm space-y-4 p-4">
-          <div class="flex justify-between">
-            <img src="./assets/Closed- Status .png" alt="">
-            <p class="text-[12px] font-bold">High</p>
-          </div>
-          <div class="space-y-3">
-            <h2 class="text-sm font-semibold">Fix navigation menu on mobile devices</h2>
-            <p class="text-gray-500 text-[12px]">The navigation menu doesn't collapse properly on mobile devices...</p>
-            <div>
-              <button class="btn btn-error">bug</button>
-              <button class="btn btn-warning">Help wanted</button>
-            </div>
-          </div>
-          <div class="text-gray-500 text-[12px]">
-            <p>#1
-              by john_doe</p>
-            <p>1/15/2024</p>
-          </div>
-        </div>
+
       </div>
     </main>
 

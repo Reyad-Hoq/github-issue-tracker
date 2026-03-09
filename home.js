@@ -1,13 +1,44 @@
-console.log('hello')
+const allcards = document.getElementById("all-cards");
+console.log(allcards)
+const openTab = document.getElementById("open-tab")
+const closedTab = document.getElementById("closed-tab")
 const loadIssues = async () => {
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await res.json();
-  renderIssues(data.data)
+  renderAllIssues(data.data)
+  renderOpenIssues(data.data)
+  const openIssues = data.data.filter(issue => issue.status === "open");
+  const openContainer = document.getElementById("open-tab");
+
+  openIssues.forEach(issue => {
+
+    const div = document.createElement("div");
+
+    div.innerHTML = `
+        <div class="card">
+          <h3>${issue.title}</h3>
+          <h3>${issue.description}</h3>
+          <h3>${issue.priority}</h3>
+          <p>${issue.status}</p>
+        </div>
+      `;
+
+    openContainer.appendChild(div);
+
+  });
 }
 
 loadIssues();
-
-const renderIssues = (issues) => {
+const renderOpenIssues = (issues) => {
+  console.log(issues)
+  const openContainer = document.getElementById("close-container");
+  openContainer.innerHTML = "";
+  const openItem = issues.filter(item => {
+    item.status === "open"
+  })
+  console.log(openItem)
+}
+const renderAllIssues = (issues) => {
   const issueCount = document.getElementById("issue-count");
   issueCount.innerText = issues.length;
 
@@ -24,8 +55,10 @@ const renderIssues = (issues) => {
       ? "text-green-500"
       : issue.priority === "medium"
         ? "text-yellow-400"
-        : "text-red-500";
-
+        : "text-red-400";
+    const statusColor = issue.status === "open" ?
+      "border-t-3 border-success" :
+      "border-t-3 border-error";
     const labelsHTML = issue.labels.map(label => {
       let color = "btn-soft";
 
@@ -57,7 +90,7 @@ const renderIssues = (issues) => {
     }).join("");
     const card = document.createElement("div");
     card.innerHTML = `
-      <div class="bg-white rounded-lg shadow-lg space-y-4 p-4">
+      <div class="bg-white rounded-lg shadow-lg space-y-4 p-4 ${statusColor}">
           <div class="flex justify-between">
             <div>
               <img src="${statusIcon}" alt="">
@@ -81,4 +114,44 @@ const renderIssues = (issues) => {
     issueContainer.appendChild(card);
   }
 
+}
+const toggleStyle = (id) => {
+  const allBtn = document.getElementById("all-btn");
+  const openBtn = document.getElementById("open-btn");
+  const closedBtn = document.getElementById("closed-btn");
+  const selected = document.getElementById(id);
+
+  allBtn.classList.remove("btn-primary");
+  openBtn.classList.remove("btn-primary");
+  closedBtn.classList.remove("btn-primary");
+
+  allBtn.classList.add("btn-outline");
+  openBtn.classList.add("btn-outline");
+  closedBtn.classList.add("btn-outline");
+
+  // selected button highlight
+  selected.classList.remove("btn-outline");
+  selected.classList.add("btn-primary");;
+  if (id === 'all-btn') {
+    console.log('allbtn')
+    closedTab.classList.add('hidden');
+    openTab.classList.add('hidden')
+    allcards.classList.remove('hidden')
+
+
+  } else if (id === 'open-btn') {
+    console.log('openbtn')
+    closedTab.classList.add('hidden');
+    openTab.classList.remove('hidden')
+    allcards.classList.add('hidden')
+
+
+  } else if (id === 'closed-btn') {
+    console.log('closedbtn')
+    closedTab.classList.remove('hidden');
+    openTab.classList.add('hidden')
+    allcards.classList.add('hidden')
+
+
+  }
 }
