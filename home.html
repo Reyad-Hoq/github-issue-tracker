@@ -30,7 +30,7 @@
 
 <body class="bg-base-200 space-y-7 min-h-screen">
   <header class="w-full border-b-1 border-gray-200 shadow-sm bg-white">
-    <div class="navbar w-11/12 mx-auto bg-base-100">
+    <div class="navbar w-11/12 mx-auto bg-base-100 gap-3 flex flex-col md:flex-row">
       <div class=" flex gap-2 items-center flex-1">
         <img class="w-[50px]" src="./assets/github-logo.png" alt="">
         <h2 class=" text-2xl">GitHub Issues Tracker</h2>
@@ -43,9 +43,9 @@
     </div>
   </header>
   <section class="bg-white w-10/12 mx-auto p-6 rounded-lg shadow-sm">
-    <button id="all-btn" class="btn btn-primary w-1/11">All</button>
-    <button id="open-btn" class="btn btn-outline btn-primary w-1/11">Open</button>
-    <button id="closed-btn" class="btn btn-outline btn-primary w-1/11">Closed</button>
+    <button id="all-btn" class="btn btn-primary ,md:w-1/11">All</button>
+    <button id="open-btn" class="btn btn-outline btn-primary md:w-1/11">Open</button>
+    <button id="closed-btn" class="btn btn-outline btn-primary md:w-1/11">Closed</button>
   </section>
 
   <section class="w-10/12 mx-auto space-y-7">
@@ -55,7 +55,7 @@
           <img src="./assets/Aperture.png" alt="">
         </div>
         <div>
-          <h2 id="issue-count" class="text-xl font-semibold">50 Issues</h2>
+          <h2 class="text-xl font-semibold"><span id="issue-count"></span> Issues</h2>
           <p class="text-gray-500 text-[16px]"> Track and manage your project issues</p>
         </div>
       </div>
@@ -70,10 +70,10 @@
     </header>
 
     <main>
-      <div id="issue-container" class="grid grid-cols-4 gap-3">
+      <div id="issue-container" class="grid md:grid-cols-4 gap-4">
         <div class="bg-white rounded-lg shadow-sm space-y-4 p-4">
           <div class="flex justify-between">
-            <img src="./assets/Open-Status.png" alt="">
+            <img src="./assets/Closed- Status .png" alt="">
             <p class="text-[12px] font-bold">High</p>
           </div>
           <div class="space-y-3">
